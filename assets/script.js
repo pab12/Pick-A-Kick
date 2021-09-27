@@ -398,7 +398,7 @@ function createButton() {
   // Button.setAttribute("onclick", "displayEvent(this)");
   Button.innerHTML = "Play!⚽️";
   test.appendChild(Button);
-  Button.appendChild(nameEl);
+  //Button.appendChild(nameEl);
 }
 createButton();
 
