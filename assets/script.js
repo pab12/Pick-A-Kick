@@ -29,7 +29,7 @@ var playerAmount = document.querySelector("#player-amount");
 var newEvent = document.querySelector("#new-event");
 var locationOptions = document.querySelector("#locations");
 var tableHeader = document.querySelector("#table-header");
-
+var displaymessage = document.querySelector("#msg");
 var forecastContainerEl = document.querySelector("#fiveday-container");
 
 
@@ -43,7 +43,7 @@ var forecastContainerEl = document.querySelector("#fiveday-container");
 button.addEventListener("click", function (e) {
   e.preventDefault();
   //var nextEl = document.querySelector("#next-btn");
-  var openWeatherForecastUrl = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=3f698036d7cb81fb192ca1a1ad2af845`;
+  var openWeatherForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=3f698036d7cb81fb192ca1a1ad2af845`;
 
   fetch(openWeatherForecastUrl)
     .then(function (response) {
@@ -105,8 +105,6 @@ button.addEventListener("click", function (e) {
         forecastContainerEl.appendChild(forecastEl);
       }
 
-      $('button').hide()
-
     });
 
   var openWeatherCurrentUrl = `https://api.openweathermap.org/data/2.5/weather?q=Austin&units=imperial&appid=3f698036d7cb81fb192ca1a1ad2af845`;
@@ -129,7 +127,7 @@ button.addEventListener("click", function (e) {
 
 
       var iconTitle = document.createElement("img");
-      iconTitle.setAttribute("src", `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`);
+      iconTitle.setAttribute("src", `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`);
 
       var number = document.createElement("span");
       number.textContent = Math.round(response.main.temp) + " °F";
@@ -145,9 +143,8 @@ button.addEventListener("click", function (e) {
       currentDescription.appendChild(number);
       currentDescription.appendChild(text);
 
-
     });
-    $('button').hide();
+     $('#btn').hide();
 });
 
 // google map fields markers
@@ -290,17 +287,21 @@ submitBtn.addEventListener("click", function () {
     players: playerAmountValue,
 
   };
-  var localStorageEvents = JSON.parse(localStorage.getItem("events")) || [];
+  
+if(dateValue ==="" || teamNameValue ==="" || teamCaptainValue ==="" || phoneNumberValue === "" || emailValue === "" || playerAmountValue ==="" || locationOptionsValue === ""){
+    console.log("its empty");
+    displaymessage.removeAttribute("class");
+  } else {
+    displaymessage.setAttribute("class", "hide");
+    var localStorageEvents = JSON.parse(localStorage.getItem("events")) || [];
   localStorageEvents.push(newEvent);
   localStorage.setItem("events", JSON.stringify(localStorageEvents))
-
   //getSavedEvents();
   // changing to event data id to the corresponding data
   if (locationOptionsValue === "Onion Creek Soccer Complex") {
     tableHeader.innerHTML = locations[1][0];
     submit.setAttribute("data-location-name", locations[1][0]);
     submitBtn.appendChild(submit);
-
     addEventToMap(locations[1][0], teamNameValue, teamCaptainValue, phoneNumberValue, emailValue, dateValue, playerAmountValue)
   } else if (locationOptionsValue === "Tillery Fields") {
     tableHeader.innerHTML = locations[2][0];
@@ -320,13 +321,11 @@ submitBtn.addEventListener("click", function () {
   } else {
     tableHeader.innerHTML = locations[0][0];
     submit.setAttribute("data-location-name", locations[0][0]);
-
     submitBtn.appendChild(submit);
     addEventToMap(locations[0][0], teamNameValue, teamCaptainValue, phoneNumberValue, emailValue, dateValue, playerAmountValue)
   }
-
   displayEvent();
-
+  }
 })
 
 // create cell add to row
