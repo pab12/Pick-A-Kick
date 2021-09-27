@@ -37,10 +37,10 @@ http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=3
 ## Screen Shot![website-screenshot](https://user-images.githubusercontent.com/77369211/134783907-3e9c9250-6363-41b7-b2a5-5b3f0872dfc8.png)
 
 ## Websites
-Live link : https://tygrski.github.io/soccer-finder/
+Live link : <br> https://tygrski.github.io/soccer-finder/ <br>https://pab12.github.io/Pick-A-Kick/
 
 ## Github Repo Link
-https://github.com/tygrski/soccer-finder
+https://github.com/tygrski/soccer-finder <br> https://github.com/pab12/Pick-A-Kick
 
 ## Contribution
 Paul Barcenas, Travis Tybor, Kaylee Stevens, Kenechukwu Ilochonwu, Manuel Ramirez
